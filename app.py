@@ -2,11 +2,13 @@ import streamlit as st
 import pandas as pd 
 import joblib
 import datetime
+import pickle
 
 st.set_page_config(page_title="Energy consumption")
 st.title("Energy consumption")
 
-model = joblib.load("Random_forest_model (2).pkl")
+with open('Random_forest_model.pkl', 'rb') as file:
+    model = pickle.load(file)
 
 model_columns = [
     'num_occupants',
@@ -108,4 +110,5 @@ if submitted:
         st.success(f"Predicted Energy Consumption: {prediction:.2f} kWh")
 
     except Exception as e:
+
         st.error(f"An error occurred: {e}")
