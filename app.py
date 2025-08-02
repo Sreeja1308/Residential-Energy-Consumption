@@ -2,13 +2,12 @@ import streamlit as st
 import pandas as pd 
 import joblib
 import datetime
-import pickle
+
 
 st.set_page_config(page_title="Energy consumption")
 st.title("Energy consumption")
 
-with open('Random_forest_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+model = joblib.load("Random_forest_model (2).pkl")
 
 model_columns = [
     'num_occupants',
